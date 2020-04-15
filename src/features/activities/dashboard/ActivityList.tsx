@@ -1,18 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Item, Button, Label, Segment } from "semantic-ui-react";
-import { IActivity } from "../../../app/models/activity";
+import { observer } from "mobx-react-lite";
+import ActivityStore from "../../../app/stores/activityStore";
 
-interface IProps {
-  activities: IActivity[];
-  selectActivity: (id: string) => void;
-  deleteActivity: (id: string) => void;
-}
-
-export const ActivityList: React.FC<IProps> = ({
-  activities,
-  selectActivity,
-  deleteActivity,
-}) => {
+const ActivityList: React.FC = () => {
+  const activityStore = useContext(ActivityStore);
+  const {
+    activitiesByDate: activities,
+    selectActivity,
+    deleteActivity,
+    submitting,
+    target,
+  } = activityStore;
   return (
     <Segment clearing>
       <Item.Group divided>
@@ -35,7 +34,9 @@ export const ActivityList: React.FC<IProps> = ({
                   color="blue"
                 />
                 <Button
-                  onClick={() => deleteActivity(activity.id)}
+                  name={activity.id}
+                  onClick={(e) => deleteActivity(e, activity.id)}
+                  loading={target === activity.id && submitting}
                   floated="right"
                   content="Delete"
                   color="red"
@@ -49,3 +50,5 @@ export const ActivityList: React.FC<IProps> = ({
     </Segment>
   );
 };
+
+export default observer(ActivityList);
