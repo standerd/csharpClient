@@ -108,6 +108,7 @@ class ActivityStore {
         activity = await agent.Activities.details(id);
         runInAction("getting activity", () => {
           this.selectActivity = activity;
+          this.activity = activity;
           this.loadingInitial = false;
         });
       } catch (error) {

@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import { Segment, Header, Form, Button, Comment } from "semantic-ui-react";
+import { observer } from "mobx-react-lite";
 
-export const ActivityDetailedChat = () => {
+const ActivityDetailedChat = () => {
   return (
     <Fragment>
       <Segment
@@ -57,3 +58,5 @@ export const ActivityDetailedChat = () => {
     </Fragment>
   );
 };
+
+export default observer(ActivityDetailedChat);

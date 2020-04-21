@@ -1,8 +1,9 @@
 import React from "react";
 import { Segment, Grid, Icon } from "semantic-ui-react";
 import { IActivity } from "../../../app/models/activity";
+import { observer } from "mobx-react-lite";
 
-export const ActivityDetailedInfo: React.FC<{ activity: IActivity }> = ({
+const ActivityDetailedInfo: React.FC<{ activity: IActivity }> = ({
   activity,
 }) => {
   return (
@@ -42,3 +43,5 @@ export const ActivityDetailedInfo: React.FC<{ activity: IActivity }> = ({
     </Segment.Group>
   );
 };
+
+export default observer(ActivityDetailedInfo);
