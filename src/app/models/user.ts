@@ -2,7 +2,7 @@ export interface IUser {
   username: string;
   displayName: string;
   token: string;
-  image?: String;
+  image?: string;
 }
 
 export interface IUserFormValues {
